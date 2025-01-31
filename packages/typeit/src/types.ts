@@ -1,3 +1,5 @@
+import TypeIt from "./TypeIt";
+
 export type Character = {
   node: El | null;
   content: string | Node;
@@ -34,11 +36,11 @@ export interface Options {
   startDelete?: boolean;
   strings?: string[] | string;
   waitUntilVisible?: boolean;
-  beforeString?: Function;
-  afterString?: Function;
-  beforeStep?: Function;
-  afterStep?: Function;
-  afterComplete?: Function;
+  beforeString?: (string: String, instance: TypeIt) => void | ((string: String, instance: TypeIt) => Promise<void>);
+  afterString?: (string: String, instance: TypeIt) => void | ((string: String, instance: TypeIt) => Promise<void>);
+  beforeStep?: (instance: TypeIt) => void | ((instance: TypeIt) => Promise<void>);
+  afterStep?: (instance: TypeIt) => void | ((instance: TypeIt) => Promise<void>);
+  afterComplete?: (instance: TypeIt) => void | ((instance: TypeIt) => Promise<void>);
 }
 
 export interface Statuses {
